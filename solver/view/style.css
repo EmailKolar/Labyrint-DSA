@@ -1,0 +1,48 @@
+body {
+  background-color: #888;
+  color: #8d8;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+#board{
+  display: grid;
+  grid-template-columns: repeat(var(--GRID_WIDTH), max-content);
+  gap: .05em;
+}
+.cell{
+  width: 1em;
+  aspect-ratio: 1/1;
+  font-size: 300%;
+
+  background-color: whitesmoke;
+ /* border: 0.5px outset darkgray;*/
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.north{
+
+  border-top: 0.1em solid black;
+}
+.south{
+  border-bottom:0.1em solid black;
+}
+.west{
+  border-left:0.1em solid black;
+}
+.east {
+  border-right: 0.1em solid black;
+}
+.start{
+  background-color: blue;
+}
+.visited{
+  background-color: red;
+}
+.goal{
+  background-color: #8d8;
+}
