@@ -5,7 +5,7 @@ import View from "../view/view.js"
 
 export default class Controller {
     constructor() {
-        this.model = new Model(10,10,this)
+        this.model = new Model(30,30,this)
         this.view = new View(this)
     }
     init() {
@@ -15,16 +15,16 @@ export default class Controller {
         console.table(this.model.maze)
         const start={row:0,col:0}
         const goal={row:5,col:5}
-        this.view.displayMaze(10,10,start,goal,this.model.maze)
+        this.view.displayMaze(30,30,start,goal,this.model.maze)
 
         this.model.generate();
-        this.view.updateMaze(10,this.model.maze,start)
+        this.view.updateMaze(30,this.model.maze,start)
        
     }
 
 
     update(){
-        this.view.updateMaze(10,this.model.maze,{row:0,col:0})
+        this.view.updateMaze(30,this.model.maze,{row:0,col:0})
         console.log('test');
     }
 }

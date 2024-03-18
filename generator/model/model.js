@@ -33,23 +33,24 @@ export default class Model {
         let frts = this.getFrontiers()
         
         let cnt =0;
-        while(frts.length>0 &&cnt<50){
+        while(frts.length>0 ){
 
-            this.wait(300);
+            //this.wait(300);
 
             const randomFrontier = Math.floor(Math.random() *frts.length)
             this.bridgeOut(frts[randomFrontier]);
 
             frts = this.getFrontiers();
-            this.controller.update();
+            
             cnt++;
-
+/*
             frts.forEach(elmt =>{
                 console.log(elmt);
             })
+            */
 
         }
-
+        this.controller.update();
         this.passage.forEach(elmt =>{
             console.log(elmt);
         })
@@ -99,7 +100,7 @@ export default class Model {
         this.maze[row][col - 1].east = false;
         this.maze[row][col - 2].east = false;
 
-        this.passage.push(this.maze[row][col - 1]);
+        //this.passage.push(this.maze[row][col - 1]);
         this.passage.push(this.maze[row][col]);
     }
     if (dir === 'west') {
@@ -108,7 +109,7 @@ export default class Model {
         this.maze[row][col + 1].west = false;
         this.maze[row][col + 2].west = false;
 
-        this.passage.push(this.maze[row][col + 1]);
+        //this.passage.push(this.maze[row][col + 1]);
         this.passage.push(this.maze[row][col]);
     }
     if (dir === 'south') {
@@ -117,7 +118,7 @@ export default class Model {
         this.maze[row - 1][col].south = false;
         this.maze[row - 2][col].south = false;
 
-        this.passage.push(this.maze[row - 1][col]);
+        //this.passage.push(this.maze[row - 1][col]);
         this.passage.push(this.maze[row][col]);
     }
     if (dir === 'north') {
@@ -126,7 +127,7 @@ export default class Model {
         this.maze[row + 1][col].north = false;
         this.maze[row + 2][col].north = false;
 
-        this.passage.push(this.maze[row + 1][col]);
+        //this.passage.push(this.maze[row + 1][col]);
         this.passage.push(this.maze[row][col]);
     }
 }

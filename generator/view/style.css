@@ -36,6 +36,9 @@ body {
 .east {
   border-right: 0.1em solid black;
 }
+.block{
+  background-color: black;
+}
 .start{
   background-color: blue;
 }

@@ -20,13 +20,13 @@ export default class View {
                 const cellData = maze[row][col]
                 console.log(cellData);
                 cell.classList.add("cell")
-
+/*
                 if(row == start.row && col == start.col){
                     cell.classList.add('start')
                 }
                 if(row == goal.row && col == goal.col){
                     cell.classList.add('goal')
-                }
+                }*/
 
                 if(cellData.north){
                     cell.classList.add('north')
@@ -39,6 +39,10 @@ export default class View {
                 }
                 if(cellData.west){
                     cell.classList.add('west')
+                }
+
+                if(cellData.west && cellData.east && cellData.north && cellData.south){
+                    cell.classList.add('blocked')
                 }
                 
                 board.appendChild(cell)
