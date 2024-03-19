@@ -7,9 +7,68 @@ export default class View {
         this.controller = controller;
 
     }
+    startPoint = null;
+    goalPoint = null;
+    
+
+    setup(){
+        
+        document.querySelector('#generate-btn').addEventListener('click',(event)=>{
+            const rows = document.querySelector('#rows').value
+            const cols = document.querySelector('#cols').value
+
+            this.controller.generate(Number(rows),Number(cols))
+        })
 
 
-    displayMaze(rows, cols,start,goal,maze){
+
+        document.querySelector('#board').addEventListener('click', (event) => {
+            let cell = event.target;
+            let cells = document.querySelectorAll('#board .cell');
+            let index = Array.from(cells).indexOf(cell);
+            
+            if (cell.classList.contains('start')) {
+                cell.classList.remove('start');
+                this.startPoint = null;
+            } else if (cell.classList.contains('goal')) {
+                cell.classList.remove('goal');
+                this.goalPoint = null;
+            } else {
+                
+                if (this.startPoint === null && !cell.classList.contains('block')) {
+                   this.startPoint = index
+                    cell.classList.add('start');
+                } else if (this.goalPoint === null && !cell.classList.contains('block')) {
+                    this.goalPoint = index
+                    cell.classList.add('goal');
+                }
+            }
+
+        });
+
+        document.querySelector("#export-btn").addEventListener('click',(event)=>{
+            this.controller.print();
+
+            const mazeData = this.controller.exportToJSON(this.startPoint,this.goalPoint);
+        
+              document.body.innerHTML = '';
+        
+              const pre = document.createElement('pre');
+              pre.textContent = mazeData;
+        
+              document.body.appendChild(pre);
+
+        })
+
+
+    }
+
+    getStartAndGoal(){
+        return {start: this.startPoint, goal: this.goalPoint}
+    }
+
+
+    displayMaze(rows, cols,maze){
         
         const board = document.querySelector("#board");
         board.style.setProperty("--GRID_WIDTH",cols)
@@ -52,14 +111,14 @@ export default class View {
 
     
         updateMaze(cols,maze){
-            console.log('UU');
             const cells = document.querySelectorAll('.cell')
             for (let i = 0; i < cells.length; i++) {
                 const cellData = maze[Math.floor(i/cols)][i%cols]
                 
+                /*
                 if(cellData.visited){
                     cells[i].classList.add('visited')
-                }
+                }*/
                 
                 if(!cellData.north){
                     cells[i].classList.remove('north')

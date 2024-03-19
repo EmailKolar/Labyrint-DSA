@@ -3,14 +3,18 @@ body {
   color: #8d8;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    margin: 1.5em;
 }
 #board{
   display: grid;
   grid-template-columns: repeat(var(--GRID_WIDTH), max-content);
   gap: .05em;
 }
+#topBar{
+  margin-bottom: 1.5em;
+}
 .cell{
-  width: 1em;
+  width: 0.5em;
   aspect-ratio: 1/1;
   font-size: 300%;
 
@@ -25,16 +29,16 @@ body {
   box-sizing: border-box;
 }
 .north{
-  border-top: 0.1em solid black;
+  border-top: 0.05em solid black;
 }
 .south{
-  border-bottom:0.1em solid black;
+  border-bottom:0.05em solid black;
 }
 .west{
-  border-left:0.1em solid black;
+  border-left:0.05em solid black;
 }
 .east {
-  border-right: 0.1em solid black;
+  border-right: 0.05em solid black;
 }
 .block{
   background-color: black;

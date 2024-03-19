@@ -1,9 +1,26 @@
 export default class Model {
-    constructor(rows, cols, controller) {
-        this.rows = rows;
-        this.cols = cols;
+    constructor(controller) {
+        this.start = null;
+        this.goal = null;
+        this.rows = null;
+        this.cols = null;
         this.maze = [];
         this.controller = controller;
+    }
+
+    setDimensions(rows, cols){
+        this.rows = rows;
+        this.cols = cols;
+    }
+    setStartAndGoal(s,g){
+        this.start = s;
+        this.goal = g;
+    }
+
+    
+    toJSON() {//fjerner unødvendige varibler
+        const { start, goal, rows, cols, maze } = this;
+        return JSON.stringify({ start, goal, rows, cols, maze },null, 2);
     }
 
     passage = [];
@@ -19,7 +36,7 @@ export default class Model {
         for (let i = 0; i < this.rows; i++) {
             this.maze[i] = [];
             for (let j = 0; j < this.cols; j++) {
-                this.maze[i][j] = { visited: false, row: i, col: j, north: true, east: true, west: true, south: true };
+                this.maze[i][j] = {row: i, col: j, north: true, east: true, west: true, south: true };
             }
         }
     }
@@ -27,7 +44,7 @@ export default class Model {
     async generate(){
         const startRow = Math.floor(Math.random() * this.rows);
         const startCol = Math.floor(Math.random() * this.cols);
-        this.maze[startRow][startCol].visited = true;
+        
         this.passage.push(this.maze[startRow][startCol])
 
         let frts = this.getFrontiers()
