@@ -35,7 +35,7 @@ export default class Model {
         let cnt =0;
         while(frts.length>0 ){
 
-            //this.wait(300);
+            await this.wait(10);
 
             const randomFrontier = Math.floor(Math.random() *frts.length)
             this.bridgeOut(frts[randomFrontier]);
@@ -43,6 +43,8 @@ export default class Model {
             frts = this.getFrontiers();
             
             cnt++;
+            this.controller.update();
+
 /*
             frts.forEach(elmt =>{
                 console.log(elmt);

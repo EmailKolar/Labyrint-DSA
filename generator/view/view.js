@@ -42,7 +42,7 @@ export default class View {
                 }
 
                 if(cellData.west && cellData.east && cellData.north && cellData.south){
-                    cell.classList.add('blocked')
+                    cell.classList.add('block')
                 }
                 
                 board.appendChild(cell)
@@ -63,15 +63,25 @@ export default class View {
                 
                 if(!cellData.north){
                     cells[i].classList.remove('north')
+                    cells[i].classList.remove('block')
                 }
                 if(!cellData.south){
                     cells[i].classList.remove('south')
+                    cells[i].classList.remove('block')
+
                 }
                 if(!cellData.east){
                     cells[i].classList.remove('east')
+                    cells[i].classList.remove('block')
+
                 }
                 if(!cellData.west){
                     cells[i].classList.remove('west')
+                    cells[i].classList.remove('block')
+
+                }
+                if(cellData.west && cellData.east && cellData.north && cellData.south){
+                    cells[i].classList.add('block')
                 }
 
             }
